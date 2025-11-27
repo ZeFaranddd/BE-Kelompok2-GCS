@@ -1,7 +1,8 @@
 const Mission = require("../models/missionModel");
 
 exports.getAllMissions = (req, res) => {
-  res.json(Mission.getAll());
+  const type = req.query.type || 'plan';
+  res.json(Mission.getAll(type));
 };
 
 exports.getMissionById = (req, res) => {
@@ -9,8 +10,8 @@ exports.getMissionById = (req, res) => {
 };
 
 exports.createMission = (req, res) => {
-  const { name, data } = req.body;
-  const result = Mission.create(name, data);
+  const { name, data, type } = req.body;
+  const result = Mission.create(name, data, type);
   res.json({ message: "Mission created", id: result.id });
 };
 
