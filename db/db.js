@@ -13,11 +13,4 @@ db.prepare(`
   )
 `).run();
 
-// Migrasi data, karena ada kolom baru yakni tipe untuk membedakan data misi dan simulasi
-try {
-  db.prepare("ALTER TABLE missions ADD COLUMN type TEXT DEFAULT 'plan'").run();
-} catch (error) {
-  // kalau sudah ada, ignore
-}
-
 module.exports = db;
